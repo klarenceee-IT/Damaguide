@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DamaguideV1.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#F9ECE6"
+    NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="28,45,28,30" Spacing="20">
+             <Label Text="DAMAGUIDE" FontSize="36" FontAttributes="Bold"
+                   CharacterSpacing="2" TextColor="#171717"
+                   HorizontalOptions="Center" />
+          <Image Source="damaguide_icon.png" HeightRequest="145"
+       WidthRequest="145" Aspect="AspectFit"
+       HorizontalOptions="Center" />
+            <Label Text="AI-Powered Furniture Damage Guide" FontSize="18"
+                   TextColor="#5D5D5D" HorizontalTextAlignment="Center" />
+            <Label Text="Take or upload a photo of your furniture and let Damaguide analyze visible damage and provide a practical repair recommendation."
+                   FontSize="15" TextColor="#666666"
+                   HorizontalTextAlignment="Center" LineHeight="1.3" />
+            <Button Text="Take a Photo" Clicked="TakePhoto_Clicked"
+                    BackgroundColor="#F9A8D7" TextColor="White"
+                    FontSize="17" FontAttributes="Bold"
+                    CornerRadius="14" HeightRequest="58" />
+            <Button Text="Upload Photo" Clicked="UploadPhoto_Clicked"
+                    BackgroundColor="#F9A8D7" TextColor="White"
+                    FontSize="17" FontAttributes="Bold"
+                    CornerRadius="14" HeightRequest="58" />
+            <Border Stroke="#E5E5E5" StrokeThickness="1"
+                    BackgroundColor="#FAFAFA"
+                    StrokeShape="RoundRectangle 12" Padding="16">
+                <Label Text="Tip: Use a clear, well-lit photo showing the damaged area."
+                       FontSize="14" TextColor="#555555"
+                       HorizontalTextAlignment="Center" />
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

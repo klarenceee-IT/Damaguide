@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DamaguideV1.Pages.ResultsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#F9ECE6" Title="Results">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="Analysis Results" FontSize="30"
+                   FontAttributes="Bold" TextColor="#171717"
+                   HorizontalOptions="Center" />
+            <Border Stroke="#E5E5E5"
+                    StrokeShape="RoundRectangle 16" Padding="18">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="Furniture Type" FontAttributes="Bold"
+                           FontSize="14" TextColor="#777777" />
+                    <Label x:Name="FurnitureTypeLabel" FontSize="19"
+                           TextColor="#171717" />
+                    <Label Text="Damage Status" FontAttributes="Bold"
+                           FontSize="14" TextColor="#777777" />
+                    <Label x:Name="DamageStatusLabel" FontSize="19"
+                           TextColor="#171717" />
+                    <Label Text="Damage Location" FontAttributes="Bold"
+                           FontSize="14" TextColor="#777777" />
+                    <Label x:Name="DamageLocationLabel" FontSize="19"
+                           TextColor="#171717" />
+                    <Label Text="Damage Severity" FontAttributes="Bold"
+                           FontSize="14" TextColor="#777777" />
+                    <Label x:Name="DamageSeverityLabel" FontSize="19"
+                           TextColor="#171717" />
+                    <Label Text="AI Confidence" FontAttributes="Bold"
+                           FontSize="14" TextColor="#777777" />
+                    <Label x:Name="ConfidenceLabel" FontSize="19"
+                           TextColor="#171717" />
+                </VerticalStackLayout>
+            </Border>
+            <Label Text="Repair Recommendation" FontSize="23"
+                   FontAttributes="Bold" TextColor="#171717" />
+            <Border Stroke="#E5E5E5"
+                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#FAFAFA" Padding="18">
+                <Label x:Name="RecommendationLabel"
+                       FontSize="16" TextColor="#444444"
+                       LineHeight="1.35" />
+            </Border>
+            <Button Text="Analyze Another Photo"
+                    Clicked="AnotherPhoto_Clicked"
+                    BackgroundColor="#F9A8D7"
+                    TextColor="White" FontSize="17"
+                    FontAttributes="Bold" CornerRadius="14"
+                    HeightRequest="58" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

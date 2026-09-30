@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DamaguideV1.Pages.ProcessingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#F9ECE6"
+    NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <VerticalStackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Padding="30" Spacing="25">
+            <ActivityIndicator IsRunning="True"
+                               WidthRequest="60" HeightRequest="60"
+                               Color="#F9A8D7" />
+            <Label Text="Analyzing your furniture..."
+                   FontSize="23" FontAttributes="Bold"
+                   TextColor="#171717"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="Damaguide AI is identifying the furniture and checking for visible damage."
+                   FontSize="15" TextColor="#666666"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

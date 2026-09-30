@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DamaguideV1.Pages.PreviewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#F9ECE6" Title="">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+            <Label Text="Photo Preview" FontSize="28"
+                   FontAttributes="Bold" TextColor="#171717"
+                   HorizontalOptions="Center" />
+            <Border Stroke="#F9ECE6"
+                    StrokeShape="RoundRectangle 18" Padding="5">
+                <Image x:Name="PreviewImage" HeightRequest="400"
+                       Aspect="AspectFit" />
+            </Border>
+            <Button Text="Analyze Damage" Clicked="Analyze_Clicked"
+                    BackgroundColor="#F9A8D7" TextColor="#F9ECE6"
+                    FontSize="17" FontAttributes="Bold"
+                    CornerRadius="14" HeightRequest="58" />
+            <Button Text="Choose Another Photo"
+                    Clicked="ChooseAnother_Clicked"
+                    BackgroundColor="#F9A8D7" TextColor="#F9ECE6"
+                   FontSize="17" FontAttributes="Bold"
+                    CornerRadius="14" HeightRequest="58" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

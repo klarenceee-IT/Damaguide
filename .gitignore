@@ -1,0 +1,6 @@
+﻿bin/
+obj/
+*.apk
+*.aab
+appsettings.json
+appsettings.Development.json
