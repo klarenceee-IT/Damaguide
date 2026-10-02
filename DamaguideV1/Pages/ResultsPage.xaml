@@ -6,7 +6,6 @@
              BackgroundColor="#FAF8F5"
              Shell.NavBarIsVisible="True">
 
-    <!-- Empty TitleView to hide the 'Results' text next to the back arrow -->
     <Shell.TitleView>
         <Grid />
     </Shell.TitleView>

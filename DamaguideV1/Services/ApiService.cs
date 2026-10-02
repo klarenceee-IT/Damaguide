@@ -6,7 +6,7 @@ public class ApiService
 {
     private readonly HttpClient _httpClient;
     
-    private const string BaseUrl = "http://10.0.13.166:10000"; 
+    private const string BaseUrl = "http://10.0.13.174:10000"; 
 
     public ApiService()
     {
