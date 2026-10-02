@@ -1,36 +1,56 @@
+using System.Text.Json;
+using DamaguideV1.Models;
 using DamaguideV1.Services;
+using Microsoft.Maui.Storage;
 
 namespace DamaguideV1.Pages;
 
 public partial class ProcessingPage : ContentPage
 {
-    private readonly FileResult _photo;
+    private readonly ApiService _apiService;
+    private readonly FileResult _fileResult;
 
-    public ProcessingPage(FileResult photo)
+    public ProcessingPage(FileResult fileResult)
     {
         InitializeComponent();
-        _photo = photo;
-        StartAnalysis();
+        _fileResult = fileResult;
+        _apiService = new ApiService();
     }
 
-    private async void StartAnalysis()
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await StartAnalysisAsync();
+    }
+
+    private async Task StartAnalysisAsync()
     {
         try
         {
-            var imageServices = new ImageServices();
-            string imagePath =
-                await imageServices.CopyToCacheAsync(_photo);
+            if (_fileResult == null) return;
 
-            var api = new ApiService();
-            var result =
-                await api.AnalyzeImageAsync(imagePath);
+            using var stream = await _fileResult.OpenReadAsync();
+            using var memoryStream = new MemoryStream();
+            await stream.CopyToAsync(memoryStream);
+            byte[] imageBytes = memoryStream.ToArray();
 
-            await Navigation.PushAsync(new ResultsPage(result));
-            Navigation.RemovePage(this);
+            string jsonResponse = await _apiService.AnalyzeImageAsync(imageBytes);
+
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            DamageAnalysis analysisResult = JsonSerializer.Deserialize<DamageAnalysis>(jsonResponse, options);
+
+            if (analysisResult != null)
+            {
+                await Navigation.PushAsync(new ResultsPage(analysisResult));
+            }
+            else
+            {
+                throw new Exception("Failed to parse analysis response.");
+            }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Analysis Error", ex.Message, "OK");
+            await DisplayAlertAsync("Analysis Error", ex.Message, "OK");
             await Navigation.PopAsync();
         }
     }

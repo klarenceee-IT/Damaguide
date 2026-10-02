@@ -1,0 +1,12 @@
+dotnet run --urls "http://10.0.2.2:10000"
+dotnet build -t:Run -f net10.0-android
+& "$env:LocalAppData\Android\Sdk\emulator\emulator.exe" -list-avds
+& "$env:LocalAppData\Android\Sdk\emulator\emulator.exe" -avd Pixel_6
+
+echo "# Damaguide" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/klarenceee-IT/Damaguide.git
+git push -u origin main

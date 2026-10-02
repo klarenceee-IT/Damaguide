@@ -1,54 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="DamaguideV1.Pages.ResultsPage"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="#F9ECE6" Title="Results">
-    <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16">
-            <Label Text="Analysis Results" FontSize="30"
-                   FontAttributes="Bold" TextColor="#171717"
-                   HorizontalOptions="Center" />
-            <Border Stroke="#E5E5E5"
-                    StrokeShape="RoundRectangle 16" Padding="18">
-                <VerticalStackLayout Spacing="14">
-                    <Label Text="Furniture Type" FontAttributes="Bold"
-                           FontSize="14" TextColor="#777777" />
-                    <Label x:Name="FurnitureTypeLabel" FontSize="19"
-                           TextColor="#171717" />
-                    <Label Text="Damage Status" FontAttributes="Bold"
-                           FontSize="14" TextColor="#777777" />
-                    <Label x:Name="DamageStatusLabel" FontSize="19"
-                           TextColor="#171717" />
-                    <Label Text="Damage Location" FontAttributes="Bold"
-                           FontSize="14" TextColor="#777777" />
-                    <Label x:Name="DamageLocationLabel" FontSize="19"
-                           TextColor="#171717" />
-                    <Label Text="Damage Severity" FontAttributes="Bold"
-                           FontSize="14" TextColor="#777777" />
-                    <Label x:Name="DamageSeverityLabel" FontSize="19"
-                           TextColor="#171717" />
-                    <Label Text="AI Confidence" FontAttributes="Bold"
-                           FontSize="14" TextColor="#777777" />
-                    <Label x:Name="ConfidenceLabel" FontSize="19"
-                           TextColor="#171717" />
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DamaguideV1.Pages.ResultsPage"
+             Title=""
+             BackgroundColor="#FAF8F5"
+             Shell.NavBarIsVisible="True">
+
+    <!-- Empty TitleView to hide the 'Results' text next to the back arrow -->
+    <Shell.TitleView>
+        <Grid />
+    </Shell.TitleView>
+
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="20">
+
+            <Label Text="Analysis Results"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#1A1A1A" />
+
+            <!-- Main Results Card (Forced Light Background) -->
+            <Border BackgroundColor="#FFFFFF"
+                    Stroke="#E0E0E0"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="16">
+                <VerticalStackLayout Spacing="12">
+                    
+                    <Label Text="Furniture Type" FontSize="12" TextColor="#757575" />
+                    <Label x:Name="FurnitureTypeLabel" FontSize="16" FontAttributes="Bold" TextColor="#212121" />
+
+                    <Label Text="Damage Status" FontSize="12" TextColor="#757575" />
+                    <Label x:Name="DamageStatusLabel" FontSize="16" FontAttributes="Bold" TextColor="#212121" />
+
+                    <Label Text="Damage Location" FontSize="12" TextColor="#757575" />
+                    <Label x:Name="DamageLocationLabel" FontSize="16" FontAttributes="Bold" TextColor="#212121" />
+
+                    <Label Text="Damage Severity" FontSize="12" TextColor="#757575" />
+                    <Label x:Name="DamageSeverityLabel" FontSize="16" FontAttributes="Bold" TextColor="#212121" />
+
+                    <Label Text="AI Confidence" FontSize="12" TextColor="#757575" />
+                    <Label x:Name="ConfidenceLabel" FontSize="16" FontAttributes="Bold" TextColor="#212121" />
+
                 </VerticalStackLayout>
             </Border>
-            <Label Text="Repair Recommendation" FontSize="23"
-                   FontAttributes="Bold" TextColor="#171717" />
-            <Border Stroke="#E5E5E5"
-                    StrokeShape="RoundRectangle 16"
-                    BackgroundColor="#FAFAFA" Padding="18">
+
+            <Label Text="Repair Recommendation"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#1A1A1A" />
+
+            <!-- Recommendation Card (Forced Light Background) -->
+            <Border BackgroundColor="#FFFFFF"
+                    Stroke="#E0E0E0"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="16">
                 <Label x:Name="RecommendationLabel"
-                       FontSize="16" TextColor="#444444"
-                       LineHeight="1.35" />
+                       FontSize="14"
+                       TextColor="#333333"
+                       LineBreakMode="WordWrap" />
             </Border>
-            <Button Text="Analyze Another Photo"
-                    Clicked="AnotherPhoto_Clicked"
-                    BackgroundColor="#F9A8D7"
-                    TextColor="White" FontSize="17"
-                    FontAttributes="Bold" CornerRadius="14"
-                    HeightRequest="58" />
+
+            <!-- Take Picture Again Button -->
+            <Button x:Name="RetakeButton"
+                    Text="Take Picture Again"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="50"
+                    FontAttributes="Bold"
+                    Clicked="OnRetakeButtonClicked" />
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

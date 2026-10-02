@@ -1,12 +1,19 @@
-using Microsoft.Maui.Media;
-
 namespace DamaguideV1.Pages;
 
 public partial class HomePage : ContentPage
 {
-    public HomePage() { InitializeComponent(); }
+    public HomePage()
+    {
+        InitializeComponent();
+    }
 
-    private async void TakePhoto_Clicked(object sender, EventArgs e)
+    // Public method so ResultsPage can re-trigger camera directly
+    public async Task TriggerCameraAsync()
+    {
+        TakePhoto_Clicked(this, EventArgs.Empty);
+    }
+
+    private async void TakePhoto_Clicked(object? sender, EventArgs e)
     {
         try
         {
@@ -19,7 +26,14 @@ public partial class HomePage : ContentPage
 
             var photo = await MediaPicker.Default.CapturePhotoAsync();
             if (photo == null) return;
+
+            // Push fresh photo into PreviewPage
             await Navigation.PushAsync(new PreviewPage(photo));
+        }
+        catch (PermissionException)
+        {
+            await DisplayAlert("Permission needed",
+                "Please allow camera access in your phone's app settings.", "OK");
         }
         catch (Exception ex)
         {
@@ -27,13 +41,22 @@ public partial class HomePage : ContentPage
         }
     }
 
-    private async void UploadPhoto_Clicked(object sender, EventArgs e)
+    private async void UploadPhoto_Clicked(object? sender, EventArgs e)
     {
         try
         {
-            var photo = await MediaPicker.Default.PickPhotoAsync();
+            var photos = await MediaPicker.Default.PickPhotosAsync(
+                new MediaPickerOptions { SelectionLimit = 1 });
+
+            var photo = photos?.FirstOrDefault();
             if (photo == null) return;
+
             await Navigation.PushAsync(new PreviewPage(photo));
+        }
+        catch (PermissionException)
+        {
+            await DisplayAlert("Permission needed",
+                "Please allow photo access in your phone's app settings.", "OK");
         }
         catch (Exception ex)
         {
