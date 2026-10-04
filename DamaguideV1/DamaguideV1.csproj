@@ -8,16 +8,14 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
 
-        <!-- Display name & Application ID -->
-        <ApplicationTitle>DamaguideV1</ApplicationTitle>
-        <ApplicationId>com.companyname.damaguidev1</ApplicationId>
+        <ApplicationTitle>Damaguide</ApplicationTitle>
+        <ApplicationId>com.companyname.damaguide</ApplicationId>
 
-        <!-- Target Android SDK versions -->
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <MauiIcon Include="Resources\AppIcon\damaguide_icon.png" Color="#F9A8D7" />
+        <MauiIcon Include="Resources\AppIcon\damaguide_icon.png" ForegroundFile="Resources\AppIcon\damaguide_icon.png" Color="#FFFFFF" />
         <MauiSplashScreen Include="Resources\Images\damaguide_icon.png" Color="#F9A8D7" BaseSize="128,128" />
         <MauiImage Include="Resources\Images\*" Exclude="Resources\Images\damaguide_icon.png" />
         <MauiFont Include="Resources\Fonts\*" />

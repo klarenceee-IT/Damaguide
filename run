@@ -11,3 +11,6 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/klarenceee-IT/Damaguide.git
 git push -u origin main
+
+dotnet clean
+dotnet publish -f net10.0-android -c Release

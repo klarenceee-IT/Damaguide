@@ -61,14 +61,14 @@
             </Border>
 
             <!-- Take Picture Again Button -->
-            <Button x:Name="RetakeButton"
-                    Text="Take Picture Again"
-                    BackgroundColor="#512BD4"
+            <Button x:Name="BackToHomeButton"
+                    Text="Back to Home"
+                    BackgroundColor="#F9A8D7"
                     TextColor="White"
                     CornerRadius="8"
                     HeightRequest="50"
                     FontAttributes="Bold"
-                    Clicked="OnRetakeButtonClicked" />
+                    Clicked="OnBackToHomeButtonClicked" />
 
         </VerticalStackLayout>
     </ScrollView>

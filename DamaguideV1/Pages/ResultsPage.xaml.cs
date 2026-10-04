@@ -61,17 +61,13 @@ public partial class ResultsPage : ContentPage
             ConfidenceLabel.Text = "0%";
             RecommendationLabel.Text = "The uploaded image does not appear to contain a recognized furniture item. Please ensure the item is clearly visible and well-lit.";
 
-            bool retake = await DisplayAlert(
+            await DisplayAlertAsync(
                 "Item Not Recognized",
-                "We couldn't detect any furniture in this photo. Would you like to take another picture?",
-                "Take Picture Again",
-                "Cancel"
+                "We couldn't detect any furniture in this photo. Returning to the home screen.",
+                "Back to Home Screen"
             );
 
-            if (retake)
-            {
-                await RetakePhotoAsync();
-            }
+            await GoBackToHomeAsync();
         }
         else if (isIntact)
         {
@@ -84,7 +80,7 @@ public partial class ResultsPage : ContentPage
                 ? recommendation
                 : "This item appears to be in good structural condition. No repairs are necessary at this time.";
 
-            await DisplayAlert(
+            await DisplayAlertAsync(
                 "No Damage Detected",
                 "Great news! The furniture item appears to be completely intact and undamaged.",
                 "OK"
@@ -111,43 +107,21 @@ public partial class ResultsPage : ContentPage
         }
     }
 
-    private async void OnRetakeButtonClicked(object sender, EventArgs e)
+    private async void OnBackToHomeButtonClicked(object sender, EventArgs e)
     {
-        await RetakePhotoAsync();
+        await GoBackToHomeAsync();
     }
 
-    private async Task RetakePhotoAsync()
+    private async Task GoBackToHomeAsync()
     {
-        // Navigate back to HomePage by removing intermediate pages
-        var navigationStack = Navigation?.NavigationStack.ToList() ?? new List<Page>();
-        var homePage = navigationStack.OfType<HomePage>().FirstOrDefault();
-
-        if (homePage != null)
+        // Safely navigate back to the root HomePage using Shell navigation
+        if (Shell.Current != null)
         {
-            // Pop back to HomePage
-            await Navigation.PopToRootAsync();
-
-            // Try to trigger the camera on HomePage if the method exists.
-            // This keeps the ResultsPage compile-safe without requiring a direct
-            // dependency on a method that may not yet be implemented in HomePage.
-            var triggerCameraMethod = homePage.GetType().GetMethod(
-                "TriggerCameraAsync",
-                System.Reflection.BindingFlags.Instance |
-                System.Reflection.BindingFlags.Public |
-                System.Reflection.BindingFlags.NonPublic);
-
-            if (triggerCameraMethod != null)
-            {
-                var result = triggerCameraMethod.Invoke(homePage, null);
-                if (result is Task task)
-                {
-                    await task;
-                }
-            }
+            await Shell.Current.GoToAsync("//HomePage");
         }
-        else
+        else if (Navigation != null)
         {
-            await Navigation.PopAsync();
+            await Navigation.PopToRootAsync();
         }
     }
 }
